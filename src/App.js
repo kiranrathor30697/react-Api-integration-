@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import GetDataList from './components/rcc/Get_Api/GetDataList';
+import Get_Api2 from './components/rcc/Get_Api/Get_Api2';
 import Get_api from './components/rfc/Get_Api/Get_api';
 import { View } from './components/rfc/Get_Api/View';
 
@@ -10,6 +12,8 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Get_api />} />
           <Route path="/:id" element={<View />} />
+          <Route path="/getdatalist" element={<GetDataList />} />
+          <Route path="/rcc/get_api2" element={<Get_Api2 />} />
         </Routes>
       </BrowserRouter>
     </div>
