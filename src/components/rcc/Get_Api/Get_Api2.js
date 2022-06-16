@@ -1,11 +1,19 @@
 import axios from 'axios';
 import React, { Component } from 'react'
 import '../../../App.css'
-export default class Get_Api2 extends Component {
+import WithRouter from './WithRouter';
+ class Get_Api2 extends Component {
 
-  state = {
-    data:{},
-  }
+ 
+    constructor(props){
+      super(props);
+      this.state = {
+        data:{},
+      }
+    
+
+      this.getValue =  this.getValue.bind(this);
+    }
   
   componentDidMount(){
     // console.log("componetDitMount")
@@ -16,7 +24,7 @@ export default class Get_Api2 extends Component {
     .then((res)=>{
       
       this.setState({...this.state,data:res})
-      console.log(this.state);
+      // console.log(this.state);
     })
 
     .catch((error)=>{
@@ -24,9 +32,18 @@ export default class Get_Api2 extends Component {
     })
     
   }
+  getValue(id){
+    console.log("get data id",id);
+    //console.log()
+    
+      this.props.navigate('/rcc/get_api2/'+id);
+      console.log(this.props)
+  }
+
+  
   
   render() {
-   
+  //  console.log(this.props)
     return (
       
       <div className='App App-header'>
@@ -47,17 +64,18 @@ export default class Get_Api2 extends Component {
                 this.state.data.length > 0 &&
                 this.state.data.map((cv)=>{
                   //  console.log(cv);
+                  const id = cv.id
                   return (
                     <tr key={cv.id}>
                       <td>{cv.id}</td>
                       <td>{cv.title}</td>
                       <td>{cv.userId}</td>
                       <td>{cv.completed.toString()}</td>
-                      {/* <td>
+                      <td>
                         {
-                          <button className='btn btn-success sm' id="btn_view" value={cv.id} onClick={view_data} >view</button>
+                          <button className='btn btn-success sm' onClick={()=>{this.getValue(id)}} >view Data</button>
                         }
-                      </td> */}
+                      </td>
                     </tr>
                   )
                 })
@@ -68,6 +86,7 @@ export default class Get_Api2 extends Component {
     )
   }
 }
+export default WithRouter(Get_Api2)
 
 
 
@@ -83,236 +102,9 @@ export default class Get_Api2 extends Component {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//  view_data2 = (e) =>{
+  //   // console.log("view_data2")
+  //   // console.log(e.target.value);
+  //    const id = e.target.value
+  //    window.location.href = "/rcc/get_api2/"+id
+  // }
