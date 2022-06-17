@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import '../../../App.css'
 import WithRouter from './WithRouter';
  class Get_Api2 extends Component {
-
  
     constructor(props){
       super(props);
