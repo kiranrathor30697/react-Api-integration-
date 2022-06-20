@@ -10,7 +10,7 @@ export default function WithRouter(MyComponent) {
         return (
             <>
                 <MyComponent params={params} navigate={navigate} {...props} /> 
-                {console.log(params)}
+                {/* {console.log(params)} */}
             </>
         )
     };

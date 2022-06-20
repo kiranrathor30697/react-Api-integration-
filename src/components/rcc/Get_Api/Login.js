@@ -26,10 +26,11 @@ import WithRouter from './WithRouter';
         axios.post(`http://192.168.1.6:4000/users/login`, data)
         .then(res => {
             localStorage.setItem("token", res.data.data.token);
-            // console.log(res.data);
+             console.log(res.data);
 
             if(res.status == 200){
                 toast.success("Login Successfully");
+                localStorage.setItem('token',"")
                 setTimeout(()=>{
                     this.props.navigate('/');
                 },3000)
