@@ -38,7 +38,7 @@ class Delete extends Component {
   render() {
     return (
       <div>
-          <h1 className='text-white'>Your Data Deleted Successfully</h1>
+          <h1 className='text-white text-center mt-5'>Your Data Deleted Successfully</h1>
       </div>
     );
   }

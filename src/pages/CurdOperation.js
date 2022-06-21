@@ -17,20 +17,22 @@ import './../App.css'
                     headers : {
                     Authorization:token
                     }
-                }
-            );
-            //  console.log(employees.data);
-             this.setState({
-                ...this.state,
-                myData:employees.data
-        })
-        if(employees.status == 200){
-          toast.success("Get Data Successfully");
-      }
-            
-          } catch (error) {
-            console.log(error);
+                  }
+              );
+              //  console.log(employees.data);
+              this.setState({
+                  ...this.state,
+                  myData:employees.data
+              })
+
+          if(employees.status == 200){
+            toast.success("Get Data Successfully");
           }
+            
+      }
+      catch (error) {
+          console.log(error);
+        }
     }
 
     componentDidMount(){
@@ -43,11 +45,16 @@ import './../App.css'
       // let id = e.currentTarget.value;
       // console.log(id);
       console.log(id)
+      alert('Data Deleted Successfully')
       this.props.navigate('/curdoperation/'+id)
+      setTimeout(()=>{
+        this.props.navigate('/curdoperation/')
+      },[2000])
     }
-    editFrom = (id) => {
+    editFrom = async (id) => {
       // console.log(id);
-      this.props.navigate('/edit/'+id)
+      this.props.navigate('/edit/'+id);
+      
     }
   render() {
     // console.log(this.state.myData)
@@ -74,16 +81,16 @@ import './../App.css'
                         const id = cv._id
                         return(  
                           <tr key={idx}>
-                            <td>{cv._id}</td>
+                            <td>{idx+1}</td>
                             <td>{cv.name}</td>
                             <td>{cv.email}</td>
-                            <td>{cv.dob}</td>
+                            <td>{new Date(cv.dob).toISOString().split('T')[0]}</td>
                             <td>{cv.position}</td>
                             <td>{cv.technologies_known}</td>
                             <td>{cv.technologie_type}</td>
                             <td>
-                              <button className='btn btn-info btn-sm edit_btn' onClick={()=>{this.editFrom(id)}}>Edit</button>&nbsp;&nbsp;
-                              <button className='btn btn-danger btn-sm del_btn' value={cv._id} onClick={()=>{this.deleteFrom(id)}}>Delete</button>
+                              <button name='edit' className='btn btn-info btn-sm edit_btn' onClick={()=>{this.editFrom(id)}}>Edit</button>&nbsp;&nbsp;
+                              <button name='edit' className='btn btn-danger btn-sm del_btn' value={cv._id} onClick={()=>{this.deleteFrom(id)}}>Delete</button>
                             </td>
                           </tr>
                         )
@@ -91,6 +98,7 @@ import './../App.css'
                 }
            </tbody>
        </table>
+      
       </div>
     );
   }
